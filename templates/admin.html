@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/static/styles.css" rel="stylesheet">
+    <style>
+        .update-status {
+            width: 200px; /* Adjust the width as needed */
+        }
+        .save-button {
+            width: 100px; /* Adjust the width as needed */
+        }
+        .sidebar {
+            background-color: #f8f9fa; /* Light grey background */
+            padding: 20px;
+            height: 100%; /* Full height */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Admin Panel</a>
+            </nav>
+
+            <div class="mt-5">
+                <h2 class="mb-4">Requests Management</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Company Name</th>
+                            <th>Nature of Business</th>
+                            <th>Business Location</th>
+                            <th>Status</th>
+                            <th class="update-status">Update Status</th>
+                            <th class="save-button">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in requests %}
+                        <tr>
+                            <td>{{ request.request_id }}</td>
+                            <td>{{ request.company_name }}</td>
+                            <td>{{ request.business_type }}</td>
+                            <td>{{ request.business_location }}</td>
+                            <td>{{ request.status }}</td>
+                            <td class="update-status">
+                                <form method="post" action="/admin">
+                                    <select name="status" class="form-control">
+                                        <option value="In Progress" {% if request.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                        <option value="Accepted" {% if request.status == 'Accepted' %}selected{% endif %}>Accepted</option>
+                                        <option value="Completed" {% if request.status == 'Completed' %}selected{% endif %}>Completed</option>
+                                        <option value="Rejected" {% if request.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                        <option value="Cancelled" {% if request.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                                    </select>
+                            </td>
+                            <td class="save-button">
+                                    <input type="hidden" name="request_id" value="{{ request.request_id }}">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../static/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Company Registration
+        </div>
+        <div class="card-body">
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="businessType">Type of Business</label>
+                    <input type="text" class="form-control" id="businessType" name="businessType" placeholder="Enter type of business" required>
+                </div>
+                <div class="form-group">
+                    <label for="businessLocation">Business Location</label>
+                    <input type="text" class="form-control" id="businessLocation" name="businessLocation" placeholder="Enter business location" required>
+                </div>
+                <button type="submit" class="btn btn-purple btn-block">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.amazonaws.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
